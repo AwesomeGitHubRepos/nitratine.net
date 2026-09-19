@@ -3,6 +3,7 @@
 
 {% block head %}
 <title>About - Nitratine</title>
+<link rel="stylesheet" href="/static/css/blog.css">
 
 <meta name="description" content="My name is Brent and I'm a full-time software developer from New Zealand. My preferred language is Python but I also do a lot of development in frontend in my free time and use an assortment of other tech at work.">
 <meta name="author" content="{{ site_config.default_author }}">
@@ -20,52 +21,129 @@
 <main class="row justify-content-center">
     <div class="col-xs-12 col-lg-8">
         <h1>About Me</h1>
-        <p>My name is <a href="https://github.com/brentvollebregt">Brent</a> and I'm a full-time software developer from New Zealand. My preferred language is Python but I also do a lot of development in frontend in my free time and use an assortment of other tech at work.</p>
-        <p>I own the <a href="https://www.youtube.com/PyTutorials">PyTutorials</a> channel on YouTube which is where I provide video tutorials on intermediate Python topics.</p>
-        <p><a href="/">Nitratine</a> is a place for me to share projects developed by me and tutorials on topics that I'm interested in. Currently, this is the third version of the site which is hosted statically using GitHub Pages and built with a custom Python build script taking use of <a href="https://github.com/Frozen-Flask/Frozen-Flask">Frozen-Flask</a>.</p>
-        <p>A small <a href="/portfolio/">portfolio of my work is linked here</a> that contains a collection of my favourite projects I developed with a small description and links to pages relating to the project.</p>
-        <p class="text-muted">Basic site statistics and values relating to the things I do can be found at <a href="/data/">/data/</a>.</p>
+        <p>My name is <a href="https://github.com/brentvollebregt">Brent</a> and I'm a full-time software developer from New Zealand. My preferred language is TypeScript but I also do a lot of backend development in my free time and use an assortment of other tech at work.</p>
+        <p>I own the <a href="https://www.youtube.com/PyTutorials">PyTutorials</a> channel on YouTube, which is where I provide video tutorials on intermediate Python topics.</p>
+        <p><a href="/">Nitratine</a> is a place for me to share projects developed by me and tutorials on topics that I'm interested in. Currently, this is the third version of the site which is hosted statically using GitHub Pages and built with a custom Python build script utilising <a href="https://github.com/Frozen-Flask/Frozen-Flask">Frozen-Flask</a>.</p>
+        <p>A small <a href="/portfolio/">portfolio of my work can be found here</a>, which contains a collection of my favourite projects with a small description and links to pages relating to each project.</p>
 
-        <h2>Tech I Have Had Experience With</h2>
-        <div class="tech-icon-container mb-3">
-            <!-- Python --> <img src="/static/img/icons/python.svg" title="Python" alt="Python">
-            <!-- JavaScript --> <img src="/static/img/icons/javascript.svg" title="JavaScript" alt="JavaScript">
-            <!-- React --> <img src="/static/img/icons/react.svg" title="React" alt="React">
-            <!-- TypeScript --> <img src="/static/img/icons/typescript.svg" title="TypeScript" alt="TypeScript">
-            <!-- Java --> <img src="/static/img/icons/java.svg" title="Java" alt="Java">
-            <!-- Clojure --> <img src="/static/img/icons/clojure.svg" title="Clojure" alt="Clojure">
-            <!-- HTML --> <img src="/static/img/icons/html.svg" title="HTML" alt="HTML">
-            <!-- CSS --> <img src="/static/img/icons/css.svg" title="CSS" alt="CSS">
-            <!-- SQLite --> <img src="/static/img/icons/sqlite.svg" title="SQLite" alt="SQLite">
-            <!-- Android --> <img src="/static/img/icons/android.svg" title="Android SDK" alt="Android SDK">
-            <!-- Flask --> <img src="/static/img/icons/flask.svg" title="Flask" alt="Flask">
-            <!-- Git --> <img src="/static/img/icons/git.svg" title="Git" alt="Git">
-            <!-- JetBrains --> <img src="/static/img/icons/jetbrains.svg" title="JetBrains" alt="JetBrains">
-            <!-- Linux --> <img src="/static/img/icons/linux.svg" title="Linux" alt="Linux">
-            <!-- PhotoShop --> <img src="/static/img/icons/photoshop.svg" title="Adobe PhotoShop" alt="Adobe PhotoShop">
-            <!-- C# --> <img src="/static/img/icons/csharp.svg" title="C#" alt="C#">
-            <!-- Haskell --> <img src="/static/img/icons/haskell.svg" title="Haskell" alt="Haskell">
+        <h2>Tech I Have Experience With</h2>
+        <div class="tech-experience-container mb-3">
+            <div class="experience-group">
+                <p><b>Frontend</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/react.svg" title="React" alt="React"> React</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/typescript.svg" title="TypeScript" alt="TypeScript"> TypeScript</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/javascript.svg" title="JavaScript" alt="JavaScript"> JavaScript</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/html.svg" title="HTML" alt="HTML"> HTML</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/css.svg" title="CSS" alt="CSS"> CSS</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/d3.svg" title="D3" alt="D3"> D3</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/leaflet.svg" title="Leaflet" alt="Leaflet"> Leaflet</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/nextjs.svg" title="Next.js" alt="Next.js"> Next.js</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/vitejs.svg" title="Vite" alt="Vite"> Vite</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/react-query.svg" title="React Query" alt="React Query"> React Query</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/react-router.svg" title="React Router" alt="React Router"> React Router</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/tailwindcss.svg" title="Tailwind CSS" alt="Tailwind CSS"> Tailwind CSS</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/material-ui.svg" title="Material UI" alt="Material UI"> Material UI</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/pwa.svg" title="PWA" alt="PWA"> PWA</div>
+                </div>
+            </div>
+            <div class="experience-group">
+                <p><b>Backend</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/python.svg" title="Python" alt="Python"> Python</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/nodejs.svg" title="Node.js" alt="Node.js"> Node.js</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/csharp.svg" title="C#" alt="C#"> C#</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/dotnet-core.svg" title=".NET Core" alt=".NET Core"> .NET Core (+ .NET Framework)</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/graphql.svg" title="GraphQL" alt="GraphQL"> GraphQL</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/java.svg" title="Java" alt="Java"> Java</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/flask.svg" title="Flask" alt="Flask"> Flask (Python)</div>
+                </div>
+            </div>
+            <div class="experience-group">
+                <p><b>Cloud</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/azure.svg" title="Azure" alt="Azure"> Azure (App Service, Functions, SQL Server, IOT Hub and more)</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/aws.svg" title="AWS" alt="AWS"> AWS</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/terraform.svg" title="Terraform" alt="Terraform"> Terraform</div>
+                </div>
+            </div>
+            <div class="experience-group">
+                <p><b>Databases</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/sqlite.svg" title="SQLite" alt="SQLite"> SQLite</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/microsoft-sql-server.svg" title="Microsoft SQL Server" alt="Microsoft SQL Server"> Microsoft SQL Server</div>
+                </div>
+            </div>
+            <div class="experience-group">
+                <p><b>Tools / Other</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/git.svg" title="Git" alt="Git"> Git</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/photoshop.svg" title="Adobe PhotoShop" alt="Adobe PhotoShop"> Adobe PhotoShop</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/linux.svg" title="Linux" alt="Linux"> Linux</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/docker.svg" title="Docker" alt="Docker"> Docker</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/github-actions.svg" title="GitHub Actions" alt="GitHub Actions"> GitHub Actions</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/swagger.svg" title="Swagger" alt="Swagger"> Swagger (NSwag too)</div>
+                </div>
+            </div>
+            <div class="experience-group">
+                <p><b>Previous experience</b></p>
+                <div class="item-wrapper">
+                    <div class="badge badge-light"><img src="/static/img/icons/android.svg" title="Android SDK" alt="Android SDK"> Android SDK</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/gatsby.svg" title="Gatsby" alt="Gatsby"> Gatsby</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/qt.svg" title="Qt" alt="Qt"> Qt (in Python)</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/clojure.svg" title="Clojure" alt="Clojure"> Clojure</div>
+                    <div class="badge badge-light"><img src="/static/img/icons/haskell.svg" title="Haskell" alt="Haskell"> Haskell</div>
+                </div>
+            </div>
         </div>
 
-        <h2 id="donations">Donations</h2>
-        <p>If you would like to donate for any project I maintain, this is the place to do so.</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="mb-3">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="CG8P7ELK4RG26">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>
-
         <h2 id="contact">Contact</h2>
-        <p>If you have any questions about a YouTube video, please leave the question in the comments and for questions about a blog post, leave the question in the comments on the blog post. Emails regarding this nature will be referred back to the corresponding platform.</p>
-        <p>If you would like to contact me for another reason, send an email to <a id="email" href="javascript:displayEmail();">[Display Email Address]</a>.</p>
+        <p>If you have a question or issues with:</p>
+        <ul>
+            <li>One of my YouTube videos &rarr; comment on the video</li>
+            <li>One of my blog posts &rarr; comment on the blog post</li>
+            <li>One of my projects on GitHub &rarr; raise an issue on the repository after searching existing issues</li>
+        </ul>
+        <p class="mb-1">If you would like to contact me for something that <b>isn't listed above</b>, send an email to <a id="email" href="javascript:displayEmail();">[Click to display email address]</a>.</p>
+        <p class="text-muted"><small>Emails relating to one of situations above will be referred back to the corresponding platform.</small></p>
         <script>
             function displayEmail() {
-                alert("Please leave questions about videos on YouTube and blog posts in the comments at the bottom of the post.");
+                alert("Please only send questions to this email address if it's not related to a YouTube video, blog post or GitHub project (unless the question is of private nature).\nAny questions about these topics will be referred back to the corresponding platform.");
                 document.getElementById('email').innerText = "{{ site_config.email }}";
                 document.getElementById('email').href = "mailto:{{ site_config.email }}";
             }
         </script>
+
+        <h2 id="public-profiles">Public Profiles</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.youtube.com/PyTutorials">YouTube</a></td>
+                    <td>
+                        <script src="https://apis.google.com/js/platform.js" gapi_processed="true"></script>
+                        <div class="g-ytsubscribe" data-channel="PrivateSplat" data-layout="default" data-count="default"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/brentvollebregt">GitHub</a></td>
+                    <td><img src="https://img.shields.io/github/followers/brentvollebregt.svg?style=social" alt="GitHub Followers"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="donations">Donations</h2>
+        <p>If you would like to donate for any project I maintain, head over to <a href="https://www.buymeacoffee.com/brentvollebregt">buymeacoffee.com/brentvollebregt</a> and leave a message.</p>
+        <p>
+            <a href="https://www.buymeacoffee.com/brentvollebregt">
+                <img src="/static/img/buy-me-a-coffee-black.png" alt="Buy Me A Coffee" style="max-height: 60px" />
+            </a>
+        </p>
+
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>The information in this weblog is provided "AS IS" with no warranties, and confers no rights.</p>
+        <p>This site does not represent the thoughts, intentions, plans or strategies of my employer. It is solely my opinion.</p>
+        <p>Feel free to challenge me, disagree with me, or tell me I'm completely nuts in the comments section of each blog entry, but I reserve the right to delete any comment for any reason whatsoever (abusive, profane, rude, or anonymous comments) - so keep it polite, please.</p>
+        <p class="text-muted"><small>Disclaimer source: <a href="https://sampleblogdisclaimer.blogspot.com/">Sample Blog Disclaimer</a></small></p>
     </div>
 </main>
 {% endblock content %}

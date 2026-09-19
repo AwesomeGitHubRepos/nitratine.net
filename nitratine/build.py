@@ -1,6 +1,6 @@
 import os
 
-from .config import site_config, redirects, FREEZE_DESTINATION
+from .config import redirects, FREEZE_DESTINATION
 from .site import app, page_not_found
 from .freezer import freezer
 
@@ -26,14 +26,8 @@ def build():
         f.close()
         print(f'Redirect: /{r} -> /{redirects[r]}')
 
-    # Add CNAME
-    f = open(os.path.join(FREEZE_DESTINATION, 'CNAME'), 'w')
-    f.write(site_config.domain)
-    f.close()
-    print('CNAME')
-
     # Add 404 page
-    f = open(os.path.join(FREEZE_DESTINATION, '404.html'), 'w')
+    f = open(os.path.join(FREEZE_DESTINATION, '404.html'), 'w', encoding='utf-8')
     with app.test_request_context():
         f.write(page_not_found(None)[0])
     f.close()

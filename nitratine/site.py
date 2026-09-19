@@ -9,27 +9,28 @@ import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
 from markdown.extensions.toc import TocExtension
+from pymdownx.tilde import DeleteSubExtension
 import readtime
 
 from .config import site_config, redirects, featured_posts, POST_SOURCE, POST_FILENAME, POST_EXTENSION
 from .external.github import get_github_user_repos
-from .external.youtube import get_most_recent_youtube_videos
+from .external.youtube import get_latest_youtube_videos
 from .flask_flatpages_extension import FlatPagesExtended
 from .markdown_extensions.youtube_video import YouTubeVideoExtension
 from .markdown_extensions.header_link import HeaderLinkExtension
-from .markdown_extensions.lazy_sizes import LazySizesImageExtension
 from .markdown_extensions.kbd import KbdExtension
+from .processors.lazy_sizes import apply_lazy_load_to_supported_images
 from .rss import generate_rss_xml
 
 
 active_markdown_extensions = [
     CodeHiliteExtension(),  # Code highlighting
-    ExtraExtension(),
+    ExtraExtension(),  # Tables, md in html ect
     TocExtension(),  # Table of contents `[toc]` + header ids
     YouTubeVideoExtension(),  # `youtube:<video_id>` tag
     HeaderLinkExtension(),  # Adding chain hover icon to go to header hash link
     KbdExtension(),  # Adding <kbd>
-    LazySizesImageExtension()
+    DeleteSubExtension(),  # `~` and `~~` for subscript and delete
 ]
 
 
@@ -88,14 +89,10 @@ def portfolio():
 
 @app.route('/data/')
 def data():
-    """ The data page """
-    public_posts = posts.get_posts()
-    available_posts = [[p.path, p['title']] for p in public_posts]
-
+    """ The data page - no longer exists and is redirected to /about/ """
     return render_template(
-        'page/data.html',
-        repos=get_github_user_repos(),
-        posts=available_posts
+        'redirect.html',
+        redirect_to='/about/'
     )
 
 
@@ -170,6 +167,7 @@ def blog_archive():
 
 
 @app.route('/blog/post/<path:path>/')
+@apply_lazy_load_to_supported_images
 def blog_post(path):
     """ A post. Renders the .md file. """
     post = posts.get_or_404(f'{path}/{POST_FILENAME}')
@@ -188,6 +186,21 @@ def blog_post(path):
         page=post,
         github_repo=github_repo
     )
+
+
+# Externally Linked Routes
+
+
+@app.route('/privacy-policies/color/')
+def privacy_policy_color():
+    """ Privacy policy for com.pythonanywhere.brentvollebregt.colour """
+    return render_template('page/privacy-policies/color.html')
+
+
+@app.route('/privacy-policies/price-per-unit/')
+def privacy_policy_price_per_unit():
+    """ Privacy policy for net.nitratine.priceperunit """
+    return render_template('page/privacy-policies/price-per-unit.html')
 
 
 # Site Management Routes
@@ -256,9 +269,9 @@ def inject_site():
 
 
 @app.context_processor
-def inject_recent_videos():
-    """ Provide recent_videos to Jinja templates """
-    return dict(recent_videos=get_most_recent_youtube_videos())
+def inject_latest_videos():
+    """ Provide latest_videos to Jinja templates """
+    return dict(latest_videos=get_latest_youtube_videos())
 
 
 @app.context_processor

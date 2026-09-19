@@ -1,5 +1,7 @@
 import re
 import unittest
+from urllib3.exceptions import InsecureRequestWarning
+import warnings
 
 from bs4 import BeautifulSoup
 import requests
@@ -12,18 +14,39 @@ EXTERNAL_URL_BLACKLIST = [
     r'^$',
     r'^http://127.0.0.1',
     r'^http://localhost',
-    r'^https://hitcounternitratine.pythonanywhere.com',  # Loves dying quite often at the moment
-    r'^https://www.pexels.com',  # Keeps giving forbiddens?
+    r'^https://www.pexels.com',  # 403
     r'^https://nzcsc.org.nz',  # Doesn't seem to be up anymore
-    r'^https://genius.com',  # 403
     r'^https://www.namesilo.com',  # 403
-    r'^https://www.buymeacoffee.com'  # 403
+    r'^https://www.buymeacoffee.com',  # 403
+    r'^https://www.dabeaz.com',  # SSL error
+    r'^https://www.tablesgenerator.com',  # SSL error
+    r'^https://www.reddit.com',  # 403
+    r'^https://stackoverflow.com',  # 403
+    r'^https://raspberrypi.stackexchange.com',  # 403
+    r'^https://www.opendronemap.org',  # 403
+    r'^https://simpleicons.org',  # 403
+    r'^https://unsplash.com',  # 403
+    r'^https://github.com',  # 429
+    r'^https://www.cvedetails.com',  # 403
+    r'^https://fotoforensics.com',  # 403
+    r'^https://www.digitalcitizen.life',  # SSL error
+    r'^https://sourceforge.net',  # 403
+    r'^http://sqlfiddle.com',  # 503 (has been broken for a while now)
+    r'^https://example.com/',  # SSL issues (no issue as this is just used as an example)
+    r'^https://www.lfd.uci.edu/',  # SSL issues
+    r'^https://www.baltana.com/',  # 403
+    r'^https://twitter.com/',  # 403
+    r'^https://crypto.stackexchange.com/',  # 403
+    r'^https://cs.stackexchange.com/',  # 403
 ]
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 
 class TestLinksRespondNon404(unittest.TestCase):
     def test_all_links_respond_non_404(self):
+        """
+        Get all hrefs from the page and check that they return successful codes
+        """
         test_client = app.test_client(self)
         local_links_visited = []
         local_links_to_visit = ['/']
@@ -55,6 +78,8 @@ class TestLinksRespondNon404(unittest.TestCase):
 
         failed_links_and_http_codes = []
 
+        warnings.simplefilter("ignore", category=InsecureRequestWarning)
+
         # Check all external links
         while len(external_links_to_check) != 0:
             link = external_links_to_check.pop()
@@ -69,14 +94,17 @@ class TestLinksRespondNon404(unittest.TestCase):
 
             # Request the URL and check it exists
             try:
+                status_code = -1
                 response = requests.get(
                     link,
-                    verify=False,
+                    verify=False if link.startswith('http://') else True,  # Don't check SSL on HTTP links,
                     headers={'User-Agent': USER_AGENT}
                 )
-                self.assertEqual(response.status_code, 200, f'The path "{link}" returned HTTP{response.status_code}')
+                status_code = response.status_code
+                self.assertEqual(status_code, 200, f'The path "{link}" returned HTTP{status_code}')
             except Exception as e:
-                failed_links_and_http_codes.append([link, response.status_code])
+                print(f'Failed to get {link}: {e}')
+                failed_links_and_http_codes.append([link, status_code])
 
         if len(failed_links_and_http_codes) > 0:
             error_list = ''
@@ -84,7 +112,12 @@ class TestLinksRespondNon404(unittest.TestCase):
                 error_list += f'\n{link_and_http_code[1]} {link_and_http_code[0]}'
             self.fail(f'Paths were found that could not be requested:' + error_list)
 
+        warnings.resetwarnings()
+
     def test_hash_references(self):
+        """
+        Validate that all local hash references are valid - the id exists on the page
+        """
         test_client = app.test_client(self)
         pages = {}  # Store each page requested locally as a BeautifulSoup object
         links_visited = []

@@ -1,14 +1,9 @@
 from dataclasses import dataclass
-import os
 from pathlib import Path
 from typing import List, Optional, Dict
 
-from dotenv import load_dotenv
-
 
 __module_directory_path = Path(__file__).resolve().parent
-
-load_dotenv(dotenv_path=(__module_directory_path / '../.env').resolve(), verbose=True)
 
 FREEZE_DESTINATION = (__module_directory_path / '../build').resolve()  # Output location for the build/freeze
 POST_SOURCE = (__module_directory_path / '../posts').resolve()  # Source directory for posts
@@ -51,11 +46,11 @@ class __DefaultSiteConfig:
         self.github_username = 'brentvollebregt'
         self.default_author = 'Brent Vollebregt'
         self.disqus_shortname = 'nitratine'
-        self.google_analytics_id = 'UA-117153268-2'
+        self.google_analytics_id = 'G-EB27CZP773'
+        self.google_analytics_id_old = 'UA-117153268-2'  # Universal Analytics Id that should be removed around 1 July 2023
         self.google_adsense_publisher_id = 'pub-6407227183932047'
         self.youtube_channel_name = 'PrivateSplat'
         self.youtube_channel_id = 'UCesEknt3SRX9R9W_f93Tb7g'
-        self.youtube_data_api_key = os.getenv('YOUTUBE_DATA_API_KEY')
         self.category_prefixes: Dict[str, str] = {
             'YouTube': '&#x1F3A5;',
             'Projects': '&#x1F4BE;',
@@ -77,11 +72,11 @@ class __DefaultSiteConfig:
                 url='https://spotify-lyrics-viewer.nitratine.net/',
                 image_url='/static/img/featured-sites/spotify-lyrics-viewer.png',
             ),
-            FeaturedSite(
-                title='Hit Counter',
-                url='https://hitcounter.pythonanywhere.com/',
-                image_url='/static/img/featured-sites/hit-counter.png',
-            ),
+            # FeaturedSite(
+            #     title='Hit Counter',
+            #     url='https://hitcounter.pythonanywhere.com/',
+            #     image_url='/static/img/featured-sites/hit-counter.png',
+            # ),
             FeaturedSite(
                 title='Monopoly Money',
                 url='https://monopoly-money.nitratine.net/',

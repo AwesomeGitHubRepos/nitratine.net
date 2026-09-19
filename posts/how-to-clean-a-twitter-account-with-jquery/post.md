@@ -66,7 +66,7 @@ Now when you execute ```scroll()```, the page will be scrolled down for 100 seco
 This may not be the most efficient way but the time and effort still in this method was a great trade off for how easy it was. Added bonus: you don't have to authorise some third-party app.
 
 ## Unlike All of my Liked Tweets
-Next was to unlike all of the tweets my bot had liked. Going to the ["Likes"](https://twitter.com/i/likes) tab, it is clear to see in Chromes DevTools that I need to click on buttons with the class 'ProfileTweet-action--unfavorite'. A simple find once again will find all of these: ```$.find('.ProfileTweet-action--unfavorite')```.
+Next was to unlike all of the tweets my bot had liked. Going to the "Likes" tab, it is clear to see in Chromes DevTools that I need to click on buttons with the class 'ProfileTweet-action--unfavorite'. A simple find once again will find all of these: ```$.find('.ProfileTweet-action--unfavorite')```.
 
 Just like last time, you will need to implement the scroll functions to load some more liked posts so they can be deleted in larger bunches. Looping over the result from the find query before and clicking each button will unlike the post.
 
@@ -102,7 +102,7 @@ function unretweet() {
 }
 ```
 
-Like previous, you can load th page using the scroll methods and then run this method by calling ```unretweet()```.
+Like previously, you can load the page using the scroll methods and then run this method by calling ```unretweet()```.
 
 ## Trying to Access Tweets Over Twitters API
 For those that haven't used bulk tweet-deleters before, the above methods probably worked; for me it didn't because I had used a bulk tweet-deleter. The final plan I had was to delete retweets them using the API.

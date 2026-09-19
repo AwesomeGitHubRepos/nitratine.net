@@ -4,14 +4,30 @@
 
 This repo is the source for [nitratine.net](https://nitratine.net/). The files in the `gh-pages` branch are hosted using GitHub pages. The Python module `nitratine` can be used to locally host and build the site into the `build` folder.
 
+## Structure
+
+```
+📁 nitratine.net
+┣ 📁 .github                 GitHub related files (like workflows)
+┣ 📁 .vscode                 vs-code related settings
+┣ 📁 nitratine               Main module that runs locally and freezes the site
+┃ ┣ 📁 external              Functions that interact outside of the site
+┃ ┣ 📁 markdown_extensions   Extensions for the markdown library used
+┃ ┣ 📁 static                CSS, JavaScript and image files
+┃ ┣ 📁 templates             Jinja templates for pages
+┃ ┣ 📁 tools                 Tools that can be called from the modules CLI
+┃ ┗ 📜 __main__.py           Module entrypoint to build and develop site
+┣ 📁 posts                   Posts (markdown based)
+┗ 📁 tests                   Tests associated with the module that runs the site locally
+```
+
+> This diagram contains a subset of all folders and files
+
 ## Setup
 
 1. Create a virtual env: `python -m venv .venv`
 2. Activate the Python venv: `.venv/Scripts/activate.bat`
 3. Install Python dependencies: `python -m pip install -r requirements.txt`
-4. Create a .env file: `cp .env.example .env`
-5. Populate .env:
-    - `YOUTUBE_DATA_API_KEY`: https://developers.google.com/youtube/v3/getting-started#before-you-start (get a simple token)
 
 ## Usage
 
